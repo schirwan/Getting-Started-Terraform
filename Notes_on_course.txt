@@ -1,0 +1,21 @@
+Provision development environment
+ => Company uses AWS cloud provider
+Use case: Provision base configuration:
+    - AWS us-east-1 region
+        - VPC within this region
+            - single Subnet-1 in VPC
+                - singel EC2 instance inside this subnet, which is running Nginx as a web Server
+                - create routing resources
+                - create security group to allow web traffic
+
+HCL Syntax:
+Object Types
+    1) Providers
+        define info about plugin of provider you use
+    2) Resources
+        - things, you want to create in a target environment. E.g. an EC2 instance
+        - each resources is associated with a provider
+    3) Data Sources
+        - a way to query information from a provider
+        - simply asking about information (not creating anything)
+        - each resources is associated with a provider
