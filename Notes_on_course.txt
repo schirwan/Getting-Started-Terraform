@@ -9,13 +9,38 @@ Use case: Provision base configuration:
                 - create security group to allow web traffic
 
 HCL Syntax:
-Object Types
-    1) Providers
-        define info about plugin of provider you use
-    2) Resources
-        - things, you want to create in a target environment. E.g. an EC2 instance
-        - each resources is associated with a provider
-    3) Data Sources
-        - a way to query information from a provider
-        - simply asking about information (not creating anything)
-        - each resources is associated with a provider
+    Object Types
+        1) Providers
+            define info about plugin of provider you use
+        2) Resources
+            - things, you want to create in a target environment. E.g. an EC2 instance
+            - each resources is associated with a provider
+        3) Data Sources
+            - a way to query information from a provider
+            - simply asking about information (not creating anything)
+            - each resources is associated with a provider
+
+    Configuration Block Syntax 
+        block_type "label" "name_label" {
+            key = "value"
+            nested_block {
+                key = "value"
+            }
+        }
+
+        exemplary resource block:
+
+        resource "aws_instance" "web_server" {
+            name = "web-server"
+            ebs_volume {
+                size = 40
+            }
+        }
+         => TF object reference: 
+                aws_instance.web_server.name
+    
+    Terraform Workflow
+        $ terraform init
+        $ terraform plan
+        $ terraform apply
+        $ terraform destroy
